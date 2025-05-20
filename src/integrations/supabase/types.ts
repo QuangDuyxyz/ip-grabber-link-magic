@@ -9,13 +9,71 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      ip_visits: {
+        Row: {
+          id: string
+          ip_address: string
+          tracking_link_id: string | null
+          user_agent: string | null
+          visit_time: string | null
+        }
+        Insert: {
+          id?: string
+          ip_address: string
+          tracking_link_id?: string | null
+          user_agent?: string | null
+          visit_time?: string | null
+        }
+        Update: {
+          id?: string
+          ip_address?: string
+          tracking_link_id?: string | null
+          user_agent?: string | null
+          visit_time?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ip_visits_tracking_link_id_fkey"
+            columns: ["tracking_link_id"]
+            isOneToOne: false
+            referencedRelation: "tracking_links"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tracking_links: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      record_ip_visit: {
+        Args: { slug_param: string; ip: string; user_agent: string }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
