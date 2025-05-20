@@ -32,9 +32,20 @@ export default function TrackingLinkCreator({ onLinkCreated }: { onLinkCreated: 
     setLoading(true);
     
     try {
+      // Get current user session
+      const { data: sessionData } = await supabase.auth.getSession();
+      
+      if (!sessionData.session) {
+        throw new Error("Bạn cần đăng nhập để tạo link tracking");
+      }
+      
       const { error } = await supabase
         .from("tracking_links")
-        .insert([{ name, slug }]);
+        .insert([{ 
+          name, 
+          slug,
+          created_by: sessionData.session.user.id // Add the user ID explicitly
+        }]);
       
       if (error) throw error;
       
