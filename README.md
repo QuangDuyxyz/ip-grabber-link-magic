@@ -1,73 +1,53 @@
-# Welcome to your Lovable project
+# Check IP - Hệ thống theo dõi IP
 
-## Project info
+## Giới thiệu
 
-**URL**: https://lovable.dev/projects/4264c459-77c9-4221-9777-4c81cc7fefcf
+Đây là ứng dụng web được xây dựng với React, TypeScript và Supabase cho phép người dùng:
 
-## How can I edit this code?
+1. Xem địa chỉ IP gốc (private IP) và IP công cộng của họ
+2. Tạo và quản lý các liên kết theo dõi để ghi lại địa chỉ IP của người truy cập
+3. Xem lịch sử các lượt truy cập với thông tin chi tiết
 
-There are several ways of editing your application.
+## Tính năng chính
 
-**Use Lovable**
+- **Xác thực người dùng**: Đăng ký và đăng nhập an toàn qua Supabase Auth
+- **Lấy IP gốc**: Sử dụng WebRTC để lấy địa chỉ IP gốc (private IP) của thiết bị
+- **Tạo liên kết theo dõi**: Tạo các liên kết với slug tùy chỉnh hoặc ngẫu nhiên
+- **Quản lý liên kết**: Xem, sao chép, mở và xóa các liên kết theo dõi
+- **Theo dõi lượt truy cập**: Ghi lại địa chỉ IP, user agent và thời gian truy cập
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4264c459-77c9-4221-9777-4c81cc7fefcf) and start prompting.
+## Công nghệ sử dụng
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Frontend**: React, TypeScript, Vite, shadcn/ui, Tailwind CSS
+- **Backend**: Supabase (Authentication, Database, Edge Functions)
+- **Triển khai**: Vercel
 
-**Use your preferred IDE**
+## Cài đặt và chạy
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Cài đặt dependencies
+npm install
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Chạy môi trường phát triển
 npm run dev
+
+# Build cho production
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+## Cấu trúc dự án
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `/src`: Mã nguồn frontend
+  - `/components`: Các component React
+  - `/pages`: Các trang của ứng dụng
+  - `/integrations`: Tích hợp với các dịch vụ bên ngoài (Supabase)
+  - `/hooks`: Custom React hooks
+  - `/lib`: Tiện ích và hàm helper
 
-**Use GitHub Codespaces**
+- `/supabase`: Mã nguồn backend
+  - `/functions`: Supabase Edge Functions
+    - `/track`: Edge Function xử lý việc theo dõi IP
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Lưu ý bảo mật
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/4264c459-77c9-4221-9777-4c81cc7fefcf) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Ứng dụng này chỉ nên được sử dụng cho mục đích hợp pháp và có sự đồng ý của người dùng. Việc thu thập địa chỉ IP nên tuân thủ các quy định về bảo vệ dữ liệu và quyền riêng tư.
